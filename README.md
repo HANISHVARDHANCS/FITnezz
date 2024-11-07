@@ -1,1 +1,2 @@
 # FITnezz
+This project is a simple Fitness Tracker web application designed to help users log and view their workout history. With a user-friendly interface, users can enter the type of workout, duration, and date, which is then stored and displayed as a workout history list. The project provides an accessible way to track fitness routines and is intended to encourage consistent exercise habits through ease of use
