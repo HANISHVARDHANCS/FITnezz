@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        #history-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #history-list li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #5cb85c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fitness Tracker</h1>
+        
+        <section id="log-workout">
+            <h2>Log Workout</h2>
+            <label for="workout-type">Workout Type:</label>
+            <input type="text" id="workout-type" placeholder="e.g., Running, Yoga">
+
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" id="duration" placeholder="e.g., 30">
+
+            <label for="date">Date:</label>
+            <input type="date" id="date">
+
+            <button onclick="logWorkout()">Add Workout</button>
+        </section>
+
+        <section id="workout-history">
+            <h2>Workout History</h2>
+            <ul id="history-list"></ul>
+        </section>
+    </div>
+    
+    <script>
+        // JavaScript for handling workout logging and displaying history
+        const workoutHistory = [];
+
+        // Function to log a workout
+        function logWorkout() {
+            const workoutType = document.getElementById('workout-type').value;
+            const duration = document.getElementById('duration').value;
+            const date = document.getElementById('date').value;
+
+            if (workoutType && duration && date) {
+                // Add the workout to the history array
+                workoutHistory.push({
+                    type: workoutType,
+                    duration: duration,
+                    date: date
+                });
+
+                // Clear the input fields
+                document.getElementById('workout-type').value = '';
+                document.getElementById('duration').value = '';
+                document.getElementById('date').value = '';
+
+                // Update the workout history display
+                updateHistoryDisplay();
+            } else {
+                alert("Please fill out all fields.");
+            }
+        }
+
+        // Function to display the workout history
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('history-list');
+            historyList.innerHTML = ''; // Clear the current history
+
+            workoutHistory.forEach(workout => {
+                const listItem = document.createElement('li');
+                listItem.textContent = ${workout.date}: ${workout.type} for ${workout.duration} minutes;
+                historyList.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
